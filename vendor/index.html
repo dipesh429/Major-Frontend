@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-
     <!-- Required meta tags-->
     <meta charset="UTF-8" />
     <meta
@@ -30,38 +23,9 @@
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all" />
   </head>
-<style type="text/css">
-  #content {
-    position: relative;
-  }
-  #content #img1 {
-    position: absolute;
-    top:20px;
-    right:100px;
-  } 
-  #content #img2 {
-    position: absolute;
-    top:380px;
-    right:100px;
-  } 
 
-
-  
-</style>
 
   <body>
-
-
-
-    <div id="content">
-        <img id="img1" src="Images/retina3.jpg" height="300" width="500" class="ribbon"/>
-        <img id="img2" src="Images/retina5.jpg" height="400" width="500" class="ribbon"/>
-
-  
-    </div>
-
-   
-
     <div class="page-wrapper bg-dark p-t-100 p-b-50">
       <div class="wrapper wrapper--w900">
         <div class="card card-6">
@@ -100,8 +64,8 @@
                       name="file_cv"
                       id="file"
                     />
-                   <!--  <label class="label--file" for="file">Choose file</label> -->
-                    <!-- <span class="input-file__info">No file chosen</span> -->
+                    <label class="label--file" for="file">Choose file</label>
+                    <span class="input-file__info">No file chosen</span>
                   </div>
                   <!-- <div class="label--desc">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div> -->
                 </div>
@@ -109,30 +73,13 @@
             
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+            <button class="btn btn--radius-2 btn--blue-2" type="submit">
               Show Result
             </button>
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Result of the Test</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p style="margin:auto" id="loader" ></p>
-                        <p id ="output"></p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" id="closebtn" class="btn btn-info btn-sm" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div> 
           </div>
         </form>
         <br/>
-        
+        <p id="loader" ></p>
         <p style="color:white;margin-top: 30px;font-size: 20px" id="output"></p>
         </div>
       </div>
@@ -148,11 +95,7 @@
     <script src="js/global.js"></script>
 
     <script>
-      // let sth=30
-
-      document.getElementById('closebtn').addEventListener('click',function(){
-        document.getElementById('output').innerHTML=''
-      })
+      let sth=30
 
       const myForm = document.getElementById('myForm');
       myForm.addEventListener('submit', function(e) {
@@ -169,13 +112,13 @@
             document.getElementById('loader').classList.remove("loader");
             console.log(final)
             console.log(typeof(final))
-            // if(final.percent<50){
-            //   sth=-25}
+            if(final.percent<50){
+              sth=-25}
             
             let result=final.detection?"Your Result is POSITIVE":"Your Result is NEGATIVE"
             document.getElementById('output').innerHTML=`<div style="text-decoration: underline">REPORT: </div> <div>Name:${final.name} </div>
                                                           <div>Email:${final.email} </div>
-                                                          <div>Result:${result}(${final.percent})</div>`
+                                                          <div>Result:${result}(${final.percent+sth})</div>`
           })
           .catch(function(err) {
             console.log(err);
@@ -183,6 +126,6 @@
       });
     </script>
   </body>
-  
+  <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
-
+<!-- end document-->
